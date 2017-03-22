@@ -1,0 +1,13 @@
+{
+  "name" : "Todo List",
+  "short_name" : "Todo List",
+  "dir" : "ltr",
+  "lang" : "en",
+  "start_url" : "../index.html",
+  "scope" : "../",
+  "display" : "standalone",
+  "background_color" : "#eee",
+  "theme_color" : "#4488aa",
+  "description" : "A Todo List application.",
+  "orientation" : "portrait"
+}

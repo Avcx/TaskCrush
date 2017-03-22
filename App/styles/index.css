@@ -1,0 +1,342 @@
+/*
+
+    Set box-sizing to border-box on all elements
+
+*/
+
+.root {
+  box-sizing: border-box;
+  font-size: 1.5em;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/*
+
+    Initalization of application shell
+
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #eee;
+}
+
+dialog {
+  z-index: 100;
+  width: 50%;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0);
+  max-width: 500px;
+}
+
+main {
+  margin-top: 3.5em;
+}
+
+h1 {
+  padding: 0 0.5em;
+  margin: 0.25em 0;
+  pointer-events: none;
+  font-family: 'Cabin', sans-serif;
+}
+
+/*
+
+    Foundational Classes
+
+*/
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: 3.5em;
+  background: #4488aa;
+  color: white;
+}
+
+.container {
+  padding: .5em 0;
+  margin: 0 auto;
+}
+
+#backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: transparent;
+  background: rgba(0, 0, 0, .4);
+}
+
+/*
+
+    Standard box-shadows for elements that require shadow
+
+*/
+
+.card,
+.top-bar,
+.float-btn {
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, .3), 0 1px 4px rgba(0, 0, 0, .3);
+}
+
+/*
+
+    Card design and Flexbox alteration
+
+*/
+
+dialog .card {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.list-container {
+  padding: 0;
+}
+
+.card {
+  margin: 1rem auto;
+  position: relative;
+  list-style: none;
+  padding: 0.05em;
+  width: 80%;
+  background-color: white;
+  border-radius: 0.15em;
+  border: 0;
+  max-width: 700px;
+}
+
+.container .card:first-child {
+  margin-top: 0.5rem;
+}
+
+.add-box.card {
+  display: block;
+  width: 96%;
+  margin: 0 auto;
+  max-width: none;
+  text-align: center;
+  padding: 1rem;
+}
+
+.card .card-header {
+  pointer-events: none;
+  display: inline-block;
+  width: 50%;
+  margin-left: 1rem;
+  vertical-align: 0.25rem;
+}
+
+/*
+
+    Customize form elements
+
+*/
+
+input[type="checkbox"] {
+  position: relative;
+  margin: 0 1em;
+  height: 2.5em;
+  background-color: white;
+  text-align: left;
+}
+
+input[type="text"] {
+  height: 2.5rem;
+  width: 90%;
+  background-color: white;
+  font-size: 1.25rem;
+  max-width: 250px;
+}
+
+/*
+
+    Button design and Animation
+
+*/
+
+.card button {
+  transition: color 0.75s;
+  transition: text-shadow 0.75s;
+  background: white;
+  border: 0;
+  color: #4488aa;
+  cursor: pointer;
+  width: 2em;
+  float: right;
+  padding-top: 1rem;
+}
+
+button:focus {
+  outline: 0;
+  background-color: #eee;
+}
+
+.edit:hover {
+  transition: color 0.5s;
+  transition: text-shadow 0.75s;
+  visibility: visible;
+  color: green;
+  text-shadow: 0 0 5px rgba(0, 0, 0, .9);
+}
+
+.delete:hover {
+  transition: color 0.75s;
+  transition: text-shadow 0.75s;
+  color: red;
+  text-shadow: 0 0 5px rgba(0, 0, 0, .9);
+}
+
+.heading {
+  padding: 1rem 1.5rem;
+  background: white;
+  box-shadow: 0 6px 4px rgba(0, 0, 0, .4), 0 2px 2px rgba(0, 0, 0, .12);
+}
+
+/*
+
+    Edit mode for list items
+
+*/
+
+input[type="text"].edit-text {
+  display: inline-block;
+  visibility: hidden;
+  height: 1.5rem;
+  width: 1.5rem;
+  font-size: 1.25rem;
+  background: #eee;
+  z-index: 10;
+}
+
+.edit-mode input[type="text"].edit-text {
+  visibility: visible;
+  position: absolute;
+  width: 50%;
+  left: 2.5rem;
+  top: 0.75em;
+}
+
+.edit-mode .card-header {
+  visibility: hidden;
+}
+
+.edit-text:focus {
+  visibility: visible;
+  border: 1px rgb(0, 0, 0);
+  border: 1px rgba(0, 0, 0, .9);
+}
+
+.completed .card-header {
+  text-decoration: line-through;
+  color: #808080;
+}
+
+.float-btn {
+  will-change: opacity;
+  transition: opacity 1.5s;
+  transition: visibility 1.5s;
+  opacity: 1;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-right: 2em;
+  margin-bottom: 2em;
+  padding: 1em;
+  background-color: rgb(255, 0, 0);
+  background-color: rgba(255, 0, 0, .6);
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+  border: none;
+  color: white;
+}
+
+.float-btn:hover {
+  cursor: pointer;
+  outline: 0;
+  background-color: rgb(255, 50, 50);
+  background-color: rgba(255, 50, 50, .6);
+}
+
+/*
+
+    Flexbox creation
+
+*/
+
+.app {
+  display: flex;
+}
+
+.list-container {
+  width: 100%;
+  flex-basis: 90%;
+}
+
+/*
+
+    Media Queries
+
+*/
+
+@media (max-width: 780px) {
+
+  /*
+
+      Tablet Design
+
+  */
+
+  dialog {
+    width: 80%;
+  }
+  .app {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+
+  /*
+
+      Phone Design
+
+  */
+
+  dialog {
+    width: 100%;
+  }
+  input[type="text"] {
+    width: 60%;
+  }
+  .list-container {
+    width: 100%;
+    flex-basis: 100%;
+  }
+  .card {
+    width: 100%
+  }
+  .add-box button {
+    margin-right: 5%;
+  }
+  .float-btn {
+    margin-right: 1em;
+    margin-bottom: 1em;
+  }
+}
