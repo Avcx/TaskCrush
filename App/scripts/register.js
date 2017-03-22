@@ -1,1 +1,1 @@
-var request = window.indexedDB.open("MyTestDatabase", 3);
+var request = window.indexedDB.open("TodoList", 1);
