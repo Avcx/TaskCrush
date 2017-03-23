@@ -43,6 +43,7 @@ let add = function(itemName, isComplete = false, exists = false) {
   	//Input boxes
   checkbox.setAttribute('type', 'checkbox');
   editBox.setAttribute('type', 'text');
+    //Temporary fix for overflowing headers
   editBox.setAttribute('maxlength', "12")
   editBox.classList.add("edit-text");
   	//Edit button
