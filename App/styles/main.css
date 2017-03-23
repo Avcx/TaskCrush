@@ -240,7 +240,7 @@ input[type="text"].edit-text {
   position: absolute;
   width: 50%;
   left: 2.5rem;
-  top: 0.85rem;
+  top: 0.95rem;
 }
 
 .edit-mode .card-header {
