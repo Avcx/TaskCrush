@@ -170,6 +170,14 @@ let removeAnimation = function(isParent = false) {
 openDia.onclick = toggleDialog;
 closeButton.onclick = toggleDialog;
 Bg.onclick = toggleDialog;
+addButton.style.pointerEvents = "none";
+inputText.onchange = () => {
+  if (inputText.value === "") {
+    addButton.style.pointerEvents = "none";
+  } else {
+    addButton.style.pointerEvents = "all";
+  }
+}
 
 addButton.addEventListener("click", () => {
   toggleDialog();
