@@ -121,6 +121,10 @@ dialog .card {
   max-width: 700px;
 }
 
+.card.list {
+  height: 3.5rem;
+}
+
 .container .card:first-child {
   margin-top: 0.5rem;
 }
@@ -138,8 +142,12 @@ dialog .card {
   pointer-events: none;
   display: inline-block;
   width: 50%;
+  margin: 0;
   margin-left: 1rem;
   vertical-align: 0.25rem;
+  position: absolute;
+  left: 2.5rem;
+  top: 0.85rem;
 }
 
 /*
@@ -150,8 +158,9 @@ dialog .card {
 
 input[type="checkbox"] {
   position: relative;
-  margin: 0 1em;
-  height: 2.5em;
+  margin: 0 1rem;
+  margin-top: 0.4rem;
+  height: 2.5rem;
   background-color: white;
   text-align: left;
 }
@@ -177,9 +186,10 @@ input[type="text"] {
   border: 0;
   color: #4488aa;
   cursor: pointer;
-  width: 2em;
+  width: 2.5rem;
   float: right;
-  padding-top: 1rem;
+  margin-top: 0.4rem;
+  padding: 0.5rem 0.2rem;
 }
 
 button:focus {
@@ -219,6 +229,7 @@ input[type="text"].edit-text {
   visibility: hidden;
   height: 1.5rem;
   width: 1.5rem;
+  margin-left: 1rem;
   font-size: 1.25rem;
   background: #eee;
   z-index: 10;
@@ -229,7 +240,7 @@ input[type="text"].edit-text {
   position: absolute;
   width: 50%;
   left: 2.5rem;
-  top: 0.75em;
+  top: 0.85rem;
 }
 
 .edit-mode .card-header {
