@@ -64,25 +64,25 @@ let add = function(itemName, isComplete = false, exists = false) {
   }
   inputText.value = "";
 }
-
-let bindFunction = function(li, checkboxEvent) {
-  let checkbox = li.querySelector("li input[type='checkbox']");
-  let editButton = li.querySelector("li .edit");
-  let deleteButton = li.querySelector("li .delete");
-  let textbox = li.querySelector("li .edit-text");
-    if (checkboxEvent === "incomp") {
-      checkbox.onchange = moveToIncomp;
-        } else if (checkboxEvent === "comp") {
-         checkbox.onchange = moveToComp;
-        }
-  deleteButton.addEventListener("click", remove);
-  editButton.addEventListener("click", edit);
-};
-let remove = function() {
+// Out of order Code
+// let bindFunction = function(li, checkboxEvent) {
+//   let checkbox = li.querySelector("li input[type='checkbox']");
+//   let editButton = li.querySelector("li .edit");
+//   let deleteButton = li.querySelector("li .delete");
+//   let textbox = li.querySelector("li .edit-text");
+//     if (checkboxEvent === "incomp") {
+//       checkbox.onchange = moveToIncomp;
+//         } else if (checkboxEvent === "comp") {
+//          checkbox.onchange = moveToComp;
+//         }
+//   deleteButton.addEventListener("click", remove);
+//   editButton.addEventListener("click", edit);
+// };
+let removeItem = function() {
   let listItem = this.parentNode;
     listItem.remove();
 };
-let edit = function() {
+let editItem = function() {
   let listItem = this.parentNode;
   let heading = listItem.querySelector("li .card-header");
   let textbox = listItem.querySelector("li .edit-text");
@@ -110,14 +110,12 @@ let edit = function() {
 let moveToComp = function() {
   console.log('Moving to Completed.');
   let listItem = this.parentNode;
-  completedItems.append(listItem);
-  bindFunction(listItem, "incomp");
+  completedItems.appendChild(listItem);
 };
 let moveToIncomp = function() {
   console.log('Moving to Incomplete.');
   let listItem = this.parentNode;
-  incompleteItems.append(listItem);
-  bindFunction(listItem, "comp");
+  incompleteItems.appendChild(listItem);
 };
 
 const openDialog = function() {
@@ -163,12 +161,13 @@ incompleteItems.addEventListener("click", (event) => {
 
 app.addEventListener("click", (event) => {
   let targetElement = event.target;
+  // console.log(targetElement);
     switch (targetElement.className) {
       case "edit":
-        edit.call(targetElement);
+        editItem.call(targetElement);
         break;
       case "delete":
-        remove.call(targetElement);
+        removeItem.call(targetElement);
         break;
     }
   })
