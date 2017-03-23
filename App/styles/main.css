@@ -30,7 +30,7 @@ body {
 
 dialog {
   z-index: 100;
-  width: 50%;
+  width: 100%;
   border: none;
   padding: 0;
   background-color: transparent;
@@ -118,7 +118,7 @@ dialog .card {
   position: relative;
   list-style: none;
   padding: 0.05em;
-  width: 80%;
+  width: 100%;
   background-color: white;
   border-radius: 0.15em;
   border: 0;
@@ -140,6 +140,10 @@ dialog .card {
   max-width: none;
   text-align: center;
   padding: 1rem;
+}
+
+.add-box button {
+  margin-right: 5%;
 }
 
 .card .card-header {
@@ -171,7 +175,7 @@ input[type="checkbox"] {
 
 input[type="text"] {
   height: 2.5rem;
-  width: 90%;
+  width: 60%;
   background-color: white;
   font-size: 1.25rem;
   max-width: 250px;
@@ -188,7 +192,7 @@ input[type="text"] {
   transition: text-shadow 0.75s;
   background: white;
   border: 0;
-  color: #4488aa;
+  color: #48a;
   cursor: pointer;
   width: 2.5rem;
   float: right;
@@ -228,6 +232,7 @@ button:focus {
 
 */
 
+
 input[type="text"].edit-text {
   display: inline-block;
   visibility: hidden;
@@ -237,6 +242,7 @@ input[type="text"].edit-text {
   font-size: 1.25rem;
   background: #eee;
   z-index: 10;
+  border: 1px solid black;
 }
 
 .edit-mode input[type="text"].edit-text {
@@ -263,17 +269,16 @@ input[type="text"].edit-text {
 }
 
 .float-btn {
+  margin-right: 1em;
+  margin-bottom: 1em;
   will-change: transform;
-
   opacity: 1;
   position: fixed;
   bottom: 0;
   right: 0;
-  margin-right: 2em;
-  margin-bottom: 2em;
   padding: 1em;
-  background-color: rgb(255, 0, 0);
-  background-color: rgba(255, 0, 0, .6);
+  background-color: #48a;
+  background-color: rgba(68, 136, 170, .6);
   height: 3em;
   width: 3em;
   border-radius: 50%;
@@ -284,8 +289,8 @@ input[type="text"].edit-text {
 .float-btn:hover {
   cursor: pointer;
   outline: 0;
-  background-color: rgb(255, 50, 50);
-  background-color: rgba(255, 50, 50, .6);
+  background-color: #49b;
+  background-color: rgba(68, 186, 220, .6);
 }
 
 /*
@@ -296,11 +301,12 @@ input[type="text"].edit-text {
 
 .app {
   display: flex;
+  flex-direction: column;
 }
 
 .list-container {
   width: 100%;
-  flex-basis: 90%;
+  flex-basis: 100%;
 }
 
 /*
@@ -309,23 +315,28 @@ input[type="text"].edit-text {
 
 */
 
-@media (max-width: 780px) {
+@media (min-width: 500px) {
 
   /*
 
       Tablet Design
 
   */
+  .card {
+    width: 80%;
+  }
 
   dialog {
     width: 80%;
   }
-  .app {
-    flex-direction: column;
+
+  .list {
+    width: 90%;
   }
+
 }
 
-@media (max-width: 500px) {
+@media (min-width: 780px) {
 
   /*
 
@@ -334,23 +345,25 @@ input[type="text"].edit-text {
   */
 
   dialog {
-    width: 100%;
+    width: 50%;
   }
   input[type="text"] {
-    width: 60%;
+    width: 90%;
   }
   .list-container {
     width: 100%;
-    flex-basis: 100%;
+    flex-basis: 90%;
   }
-  .card {
-    width: 100%
-  }
+
   .add-box button {
-    margin-right: 5%;
+    margin-right: 0;
   }
+
   .float-btn {
     margin-right: 1em;
     margin-bottom: 1em;
+  }
+  .app {
+    flex-direction: row;
   }
 }

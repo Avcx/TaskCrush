@@ -13,7 +13,6 @@ function hideButton() {
   openDia.style.visibility = "hidden";
   openDia.style.opacity    = "0";
 }
-
 function showButton() {
   openDia.style.visibility = "visible";
   openDia.style.opacity    = "1";
@@ -118,7 +117,7 @@ let moveToIncomp = function() {
   incompleteItems.appendChild(listItem);
 };
 
-const toggleDialog = function() {
+let toggleDialog = function() {
   const dialog = document.getElementsByTagName("dialog")[0];
   let openDia = document.getElementById("open-dia");
   if (dialog.hasAttribute("open")) {
