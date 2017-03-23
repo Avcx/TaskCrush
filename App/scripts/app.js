@@ -1,22 +1,22 @@
 //Collect interactive elements
-const addButton = document.getElementById("add-item");
-const completedItems = document.getElementsByClassName("completed")[0];
+const addButton       = document.getElementById("add-item");
+const completedItems  = document.getElementsByClassName("completed")[0];
 const incompleteItems = document.getElementsByClassName("incomplete")[0];
-const inputText = document.getElementById("input-text");
-const closeButton = document.getElementById("close-dia");
-const Bg = document.getElementById("backdrop");
-const openDia = document.getElementById("open-dia");
-const app = document.querySelector(".app");
-const version_number = 1;
+const inputText       = document.getElementById("input-text");
+const closeButton     = document.getElementById("close-dia");
+const Bg              = document.getElementById("backdrop");
+const openDia         = document.getElementById("open-dia");
+const app             = document.querySelector(".app");
+const version_number  = 1;
 
 function hideButton() {
   openDia.style.visibility = "hidden";
-  openDia.style.opacity = "0";
+  openDia.style.opacity    = "0";
 }
 
 function showButton() {
   openDia.style.visibility = "visible";
-  openDia.style.opacity = "1";
+  openDia.style.opacity    = "1";
 }
 
 
@@ -24,20 +24,28 @@ let add = function(itemName, isComplete = false, exists = false) {
   //Create required elements
     itemName = itemName || inputText.value;
   if (itemName === "") {
-    openDialog();
+    toggleDialog();
     return alert("Task name must not be empty!");
   } else if (typeof itemName != "string") {
-    openDialog();
+    toggleDialog();
     return alert("Task name must not be empty!");
   }
-	let editButton = document.createElement('button');
+  //Create all needed elements
+	let editButton   = document.createElement('button');
   let deleteButton = document.createElement('button');
-	let newListItem = document.createElement('li');
-  let checkbox = document.createElement('input');
-  let header = document.createElement("h3");
-  let editBox = document.createElement("input");
+	let newListItem  = document.createElement('li');
+  let checkbox     = document.createElement('input');
+  let header       = document.createElement("h3");
+  let editBox      = document.createElement("input");
+  let editIcon     = document.createElement("i");
+  let deleteIcon   = document.createElement("i");
   //Modify attributes and text
   newListItem.classList.add("card", "list");
+    //Icons
+  editIcon.classList.add("material-icons");
+  editIcon.textContent = "create";
+  deleteIcon.classList.add("material-icons");
+  deleteIcon.textContent = "delete";
   	//Header
   header.innerText = itemName;
   header.classList.add("card-header");
@@ -49,10 +57,10 @@ let add = function(itemName, isComplete = false, exists = false) {
   editBox.setAttribute('maxlength', "12")
   editBox.classList.add("edit-text");
   	//Edit button
-  editButton.innerHTML = "<i class='material-icons'>create</i>";
+  editButton.appendChild(editIcon);
   editButton.classList.add("edit");
   	//Delete button
-  deleteButton.innerHTML = "<i class='material-icons'>delete</i>";
+  deleteButton.appendChild(deleteIcon);
   deleteButton.classList.add("delete");
   //Append
   newListItem.append(checkbox, header, editBox, editButton, deleteButton);
@@ -64,46 +72,38 @@ let add = function(itemName, isComplete = false, exists = false) {
   }
   inputText.value = "";
 }
-// Out of order Code
-// let bindFunction = function(li, checkboxEvent) {
-//   let checkbox = li.querySelector("li input[type='checkbox']");
-//   let editButton = li.querySelector("li .edit");
-//   let deleteButton = li.querySelector("li .delete");
-//   let textbox = li.querySelector("li .edit-text");
-//     if (checkboxEvent === "incomp") {
-//       checkbox.onchange = moveToIncomp;
-//         } else if (checkboxEvent === "comp") {
-//          checkbox.onchange = moveToComp;
-//         }
-//   deleteButton.addEventListener("click", remove);
-//   editButton.addEventListener("click", edit);
-// };
+
 let removeItem = function() {
   let listItem = this.parentNode;
     listItem.remove();
 };
 let editItem = function() {
-  let listItem = this.parentNode;
-  let heading = listItem.querySelector("li .card-header");
-  let textbox = listItem.querySelector("li .edit-text");
-  let openDia = document.querySelector("#open-dia");
+  // Selecting all elements
+  let button    = this;
+  let listItem  = button.parentNode;
+  let heading   = listItem.querySelector(".card-header");
+  let textbox   = listItem.querySelector(".edit-text");
+  let openDia   = document.querySelector("#open-dia");
+  let icon      = button.querySelector("i");
+  // Checks to see if item is in edit-mode already.
   if (listItem.classList.contains("edit-mode")) {
+    // Checks for an empty value in the textbox
         if (textbox.value === "") {
           listItem.classList.remove("edit-mode");
-          this.innerHTML = "<i class='material-icons'>create</i>";
+          icon.textContent = "create";
           showButton();
           return;
   }
     listItem.classList.remove("edit-mode");
-		heading.innerText = textbox.value;
+		heading.textContent = textbox.value;
     showButton();
-    this.innerHTML = "<i class='material-icons'>create</i>";
+    icon.textContent = "create";
   } else {
     listItem.classList.add("edit-mode");
     hideButton();
+    textbox.value = heading.textContent;
     textbox.focus();
-    textbox.value = heading.innerText;
-    this.innerHTML = "<i class='material-icons'>save</i>";
+    icon.textContent = "save";
   }
 };
 
@@ -118,7 +118,7 @@ let moveToIncomp = function() {
   incompleteItems.appendChild(listItem);
 };
 
-const openDialog = function() {
+const toggleDialog = function() {
   const dialog = document.getElementsByTagName("dialog")[0];
   let openDia = document.getElementById("open-dia");
   if (dialog.hasAttribute("open")) {
@@ -135,12 +135,12 @@ const openDialog = function() {
 };
 
 //Functions to set Event Listeners
-openDia.onclick = openDialog;
-closeButton.onclick = openDialog;
-Bg.onclick = openDialog;
+openDia.onclick = toggleDialog;
+closeButton.onclick = toggleDialog;
+Bg.onclick = toggleDialog;
 
 addButton.addEventListener("click", () => {
-  openDialog();
+  toggleDialog();
   add();
 });
 
@@ -171,11 +171,3 @@ app.addEventListener("click", (event) => {
         break;
     }
   })
-
-// for (let i = 0; i < completedItems.children.length; i++) {
-//   bindFunction(completedItems.children[i], "incomp");
-// };
-//
-// for (let i = 0; i < incompleteItems.children.length; i++) {
-//   bindFunction(incompleteItems.children[i], "comp");
-// };
