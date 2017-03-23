@@ -49,6 +49,10 @@ h1 {
   font-family: 'Cabin', sans-serif;
 }
 
+i {
+  pointer-events: none;
+}
+
 /*
 
     Foundational Classes
@@ -259,9 +263,8 @@ input[type="text"].edit-text {
 }
 
 .float-btn {
-  will-change: opacity;
-  transition: opacity 1.5s;
-  transition: visibility 1.5s;
+  will-change: transform;
+
   opacity: 1;
   position: fixed;
   bottom: 0;

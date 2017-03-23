@@ -6,6 +6,7 @@ const inputText = document.getElementById("input-text");
 const closeButton = document.getElementById("close-dia");
 const Bg = document.getElementById("backdrop");
 const openDia = document.getElementById("open-dia");
+const app = document.querySelector(".app");
 const version_number = 1;
 
 function hideButton() {
@@ -42,8 +43,9 @@ let add = function(itemName, isComplete = false, exists = false) {
   header.classList.add("card-header");
   	//Input boxes
   checkbox.setAttribute('type', 'checkbox');
+  checkbox.classList.add("list-select");
   editBox.setAttribute('type', 'text');
-    //Temporary fix for overflowing headers
+      //Temporary fix for overflowing headers
   editBox.setAttribute('maxlength', "12")
   editBox.classList.add("edit-text");
   	//Edit button
@@ -54,14 +56,11 @@ let add = function(itemName, isComplete = false, exists = false) {
   deleteButton.classList.add("delete");
   //Append
   newListItem.append(checkbox, header, editBox, editButton, deleteButton);
-  //Set Event Listeners
   if (isComplete == "true") {
-  	completedItems.appendChild(newListItem);
+    completedItems.appendChild(newListItem);
     checkbox.checked = "checked";
-    bindFunction(newListItem, "incomp");
   } else {
     incompleteItems.appendChild(newListItem);
-    bindFunction(newListItem, "comp");
   }
   inputText.value = "";
 }
@@ -147,10 +146,37 @@ addButton.addEventListener("click", () => {
   add();
 });
 
-for (let i = 0; i < completedItems.children.length; i++) {
-  bindFunction(completedItems.children[i], "incomp");
-};
+//Automatically sets event listeners based on the items list
 
-for (let i = 0; i < incompleteItems.children.length; i++) {
-  bindFunction(incompleteItems.children[i], "comp");
-};
+completedItems.addEventListener("click", (event) => {
+  let targetElement = event.target;
+    if (targetElement.className === "list-select") {
+        targetElement.onchange = moveToIncomp.call(targetElement);
+    }
+})
+incompleteItems.addEventListener("click", (event) => {
+  let targetElement = event.target;
+    if (targetElement.className === "list-select") {
+        targetElement.onchange = moveToComp.call(targetElement);
+    }
+})
+
+app.addEventListener("click", (event) => {
+  let targetElement = event.target;
+    switch (targetElement.className) {
+      case "edit":
+        edit.call(targetElement);
+        break;
+      case "delete":
+        remove.call(targetElement);
+        break;
+    }
+  })
+
+// for (let i = 0; i < completedItems.children.length; i++) {
+//   bindFunction(completedItems.children[i], "incomp");
+// };
+//
+// for (let i = 0; i < incompleteItems.children.length; i++) {
+//   bindFunction(incompleteItems.children[i], "comp");
+// };
