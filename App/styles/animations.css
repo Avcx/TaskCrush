@@ -1,0 +1,32 @@
+#backdrop {
+  will-change: opacity;
+  transition: opacity 0.5s;
+}
+
+.add-box {
+  will-change: transform;
+  transition: transform 0.5s;
+}
+
+.card button {
+  transition: color 0.75s;
+  transition: text-shadow 0.75s;
+}
+
+.edit:hover {
+  transition: color 0.5s;
+  transition: text-shadow 0.75s;
+}
+
+.delete:hover {
+  transition: color 0.75s;
+  transition: text-shadow 0.75s;
+}
+
+.float-btn {
+  will-change: transform;
+}
+
+li {
+  transition: transform 0.5s;
+}

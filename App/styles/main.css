@@ -65,10 +65,8 @@ i {
 }
 
 #backdrop {
-  will-change: opacity;
-  transition: opacity 0.5s;
-  opacity: 0;
   position: fixed;
+  opacity: 0;
   top: 0;
   left: 0;
   width: 100%;
@@ -103,11 +101,9 @@ i {
 
 .add-box {
   position: fixed;
-  will-change: transform;
-  transition: transform 0.5s;
-  transform: translateX(-110vw);
   z-index: 100;
   pointer-events: none;
+  transform: translateX(-110vw);
 }
 
 .add-box.open {
@@ -195,8 +191,6 @@ input[type="text"] {
 */
 
 .card button {
-  transition: color 0.75s;
-  transition: text-shadow 0.75s;
   background: white;
   border: 0;
   color: #48a;
@@ -213,16 +207,12 @@ button:focus {
 }
 
 .edit:hover {
-  transition: color 0.5s;
-  transition: text-shadow 0.75s;
   visibility: visible;
   color: green;
   text-shadow: 0 0 5px rgba(0, 0, 0, .9);
 }
 
 .delete:hover {
-  transition: color 0.75s;
-  transition: text-shadow 0.75s;
   color: red;
   text-shadow: 0 0 5px rgba(0, 0, 0, .9);
 }
@@ -278,7 +268,6 @@ input[type="text"].edit-text {
 .float-btn {
   margin-right: 1em;
   margin-bottom: 1em;
-  will-change: transform;
   opacity: 1;
   position: fixed;
   bottom: 0;
@@ -314,10 +303,6 @@ input[type="text"].edit-text {
 .list-container {
   width: 100%;
   flex-basis: 100%;
-}
-
-li {
-  transition: transform 0.5s;
 }
 
 /*

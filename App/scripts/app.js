@@ -7,18 +7,14 @@ const closeButton     = document.getElementById("close-dia");
 const Bg              = document.getElementById("backdrop");
 const openDia         = document.getElementById("open-dia");
 const app             = document.querySelector(".app");
-const dialog = document.querySelector(".add-box.card")
+const dialog          = document.querySelector(".add-box.card");
 const version_number  = 1;
 const animationLength = 500;
 
-function hideButton() {
-  openDia.style.visibility = "hidden";
-  openDia.style.opacity    = "0";
+function toggleButton() {
+  slideAnimation.call(openDia, true);
 }
-function showButton() {
-  openDia.style.visibility = "visible";
-  openDia.style.opacity    = "1";
-}
+
 
 
 let add = function(itemName, isComplete = false, exists = false) {
@@ -101,16 +97,16 @@ let editItem = function() {
         if (textbox.value === "") {
           listItem.classList.remove("edit-mode");
           icon.textContent = "create";
-          showButton();
+          toggleButton();
           return;
   }
     listItem.classList.remove("edit-mode");
 		heading.textContent = textbox.value;
-    showButton();
+    toggleButton();
     icon.textContent = "create";
   } else {
     listItem.classList.add("edit-mode");
-    hideButton();
+    toggleButton();
     textbox.value = heading.textContent;
     textbox.focus();
     icon.textContent = "save";
@@ -131,39 +127,44 @@ let moveToIncomp = function() {
 let toggleDialog = function() {
   let openDia = document.getElementById("open-dia");
   if (dialog.classList.contains("open")) {
+    toggleButton()
     dialog.classList.remove("open");
     Bg.classList.remove("open");
     Bg.style.pointerEvents = "none";
-    setTimeout(() => {
-      openDia.style.visibility = "visible";
-      openDia.style.visibility = "visible";
-      Bg.style.visibility = "hidden";
-    }, animationLength);
-
   } else {
+    toggleButton();
     dialog.classList.add("open");
     Bg.style.visibility = "visible";
     Bg.classList.add("open");
     Bg.style.pointerEvents = "all";
     setTimeout( () => {
       inputText.focus();
-      openDia.style.visibility = "hidden";
     }, animationLength);
   }
 };
 
-let removeAnimation = function(isParent = false) {
+let slideAnimation = function(isParent = false) {
   let item;
-  let open = true;
+
   if (isParent) {
     item = this;
   } else {
     item = this.parentNode;
   }
-  item.style.willChange = "transform";
-  item.style.transition = `transform ${animationLength / 1000}s`
-  item.style.pointerEvents = "none";
-  item.style.transform = "translateX(110vw)";
+  if (!item.style.transform) {
+    item.style.transform = "translateX(0px)";
+    item.style.transition = `transform ${animationLength / 1000}s`
+  }
+
+  if (item.style.transform === "translateX(0px)") {
+    console.log('Moving out');
+    item.style.pointerEvents = "none";
+    item.style.transform = "translateX(110vw)";
+  } else {
+    console.log('Moving back');
+    item.style.transform = "translateX(0px)";
+    item.style.pointerEvents = "all";
+  }
 }
 
 //Functions to set Event Listeners
@@ -209,7 +210,7 @@ app.addEventListener("click", (event) => {
         editItem.call(targetElement);
         break;
       case "delete":
-        removeAnimation.call(targetElement);
+        slideAnimation.call(targetElement);
         setTimeout(() => {
           removeItem.call(targetElement);
         }, animationLength);
