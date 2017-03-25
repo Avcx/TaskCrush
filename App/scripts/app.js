@@ -3,7 +3,7 @@ const addButton       = document.getElementById("add-item");
 const completedItems  = document.getElementsByClassName("completed")[0];
 const incompleteItems = document.getElementsByClassName("incomplete")[0];
 const inputText       = document.getElementById("input-text");
-const closeButton     = document.getElementById("close-dia");
+const closeButton     = document.getElementById("close-dialog");
 const Bg              = document.getElementById("backdrop");
 const openDia         = document.getElementById("open-dia");
 const app             = document.querySelector(".app");
@@ -112,18 +112,20 @@ let editItem = function() {
     icon.textContent = "save";
   }
 };
-
+// Callback for moving the list items to completedItems
 let moveToComp = function() {
   console.log('Moving to Completed.');
   let listItem = this.parentNode;
   completedItems.appendChild(listItem);
 };
+//Callback for moving the list items to incompleteItems
 let moveToIncomp = function() {
   console.log('Moving to Incomplete.');
   let listItem = this.parentNode;
   incompleteItems.appendChild(listItem);
 };
 
+// Opens and closes the dialog window
 let toggleDialog = function() {
   let openDia = document.getElementById("open-dia");
   if (dialog.classList.contains("open")) {

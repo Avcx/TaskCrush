@@ -201,18 +201,35 @@ input[type="text"] {
   padding: 0.5rem 0.2rem;
 }
 
+#close-dialog, #add-item {
+  position: absolute;
+  float: none;
+  margin-right: 0.4rem;
+  right: 0;
+}
+
+#add-item {
+  bottom: 0;
+  margin-bottom: 0.4rem;
+}
+
+#close-dialog {
+  top: 0;
+}
+
 button:focus {
   outline: 0;
   background-color: #eee;
 }
 
 .edit:hover {
-  visibility: visible;
+  opacity: 1;
   color: green;
   text-shadow: 0 0 5px rgba(0, 0, 0, .9);
 }
 
 .delete:hover {
+  opacity: 1;
   color: red;
   text-shadow: 0 0 5px rgba(0, 0, 0, .9);
 }
