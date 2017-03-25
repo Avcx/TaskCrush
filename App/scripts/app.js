@@ -17,7 +17,7 @@ function toggleButton() {
 
 
 
-let add = function(itemName, isComplete = false, exists = false) {
+const add = function(itemName, isComplete = false, exists = false) {
   //Create required elements
     itemName = itemName || inputText.value;
   if (itemName === "") {
@@ -27,15 +27,15 @@ let add = function(itemName, isComplete = false, exists = false) {
     toggleDialog();
     return alert("Task name must not be empty!");
   }
-  //Create all needed elements
-	let editButton   = document.createElement('button');
-  let deleteButton = document.createElement('button');
-	let newListItem  = document.createElement('li');
-  let checkbox     = document.createElement('input');
-  let header       = document.createElement("h3");
-  let editBox      = document.createElement("input");
-  let editIcon     = document.createElement("i");
-  let deleteIcon   = document.createElement("i");
+  //Create all constded elements
+	const editButton   = document.createElement('button');
+  const deleteButton = document.createElement('button');
+	const newListItem  = document.createElement('li');
+  const checkbox     = document.createElement('input');
+  const header       = document.createElement("h3");
+  const editBox      = document.createElement("input");
+  const editIcon     = document.createElement("i");
+  const deleteIcon   = document.createElement("i");
   //Modify attributes and text
   newListItem.classList.add("card", "list");
     //Icons
@@ -79,18 +79,18 @@ let add = function(itemName, isComplete = false, exists = false) {
   }, animationLength)
 }
 
-let removeItem = function() {
+const removeItem = function() {
   let listItem = this.parentNode;
     listItem.remove();
 };
-let editItem = function() {
+const editItem = function() {
   // Selecting all elements
-  let button    = this;
-  let listItem  = button.parentNode;
-  let heading   = listItem.querySelector(".card-header");
-  let textbox   = listItem.querySelector(".edit-text");
-  let openDia   = document.querySelector("#open-dia");
-  let icon      = button.querySelector("i");
+  const button    = this;
+  const listItem  = button.parentNode;
+  const heading   = listItem.querySelector(".card-header");
+  const textbox   = listItem.querySelector(".edit-text");
+  const openDia   = document.querySelector("#open-dia");
+  const icon      = button.querySelector("i");
   // Checks to see if item is in edit-mode already.
   if (listItem.classList.contains("edit-mode")) {
     // Checks for an empty value in the textbox
@@ -115,27 +115,31 @@ let editItem = function() {
 // Callback for moving the list items to completedItems
 let moveToComp = function() {
   console.log('Moving to Completed.');
-  let listItem = this.parentNode;
+  const listItem = this.parentNode;
   completedItems.appendChild(listItem);
 };
 //Callback for moving the list items to incompleteItems
 let moveToIncomp = function() {
   console.log('Moving to Incomplete.');
-  let listItem = this.parentNode;
+  const listItem = this.parentNode;
   incompleteItems.appendChild(listItem);
 };
 
 // Opens and closes the dialog window
 let toggleDialog = function() {
-  let openDia = document.getElementById("open-dia");
+  const openDia = document.getElementById("open-dia");
   if (dialog.classList.contains("open")) {
     toggleButton()
     dialog.classList.remove("open");
     Bg.classList.remove("open");
     Bg.style.pointerEvents = "none";
+    setTimeout(() => {
+      dialog.style.visibility = "hidden"
+    }, animationLength)
   } else {
     toggleButton();
     dialog.classList.add("open");
+    dialog.style.visibility = "visible"
     Bg.style.visibility = "visible";
     Bg.classList.add("open");
     Bg.style.pointerEvents = "all";
@@ -163,7 +167,7 @@ let slideAnimation = function(isParent = false) {
     item.style.pointerEvents = "none";
     item.style.transform = "translateX(110vw)";
   } else {
-    console.log('Moving back');
+    console.log('Moving in');
     item.style.transform = "translateX(0px)";
     item.style.pointerEvents = "all";
   }
@@ -190,22 +194,20 @@ addButton.addEventListener("click", () => {
 //Automatically sets event listeners based on the items list
 
 completedItems.addEventListener("click", (event) => {
-  let targetElement = event.target;
-    if (targetElement.className === "list-select") {
+  const targetElement = event.target;
+    if (targetElement.classList.contains("list-select")) {
         targetElement.onchange = moveToIncomp.call(targetElement);
     }
 })
 incompleteItems.addEventListener("click", (event) => {
-  let targetElement = event.target;
-    if (targetElement.className === "list-select") {
+  const targetElement = event.target;
+    if (targetElement.classList.contains("list-select")) {
         targetElement.onchange = moveToComp.call(targetElement);
     }
 })
 
 app.addEventListener("click", (event) => {
-  let targetElement = event.target;
-  let listItem = targetElement.parentNode;
-  console.log(listItem);
+  const targetElement = event.target;
   // console.log(targetElement);
     switch (targetElement.className) {
       case "edit":
@@ -217,5 +219,25 @@ app.addEventListener("click", (event) => {
           removeItem.call(targetElement);
         }, animationLength);
         break;
+    }
+  })
+
+  app.addEventListener("mouseover", (event) => {
+    const targetElement = event.target;
+    const targetParent = targetElement.parentNode;
+    if (targetElement.classList.contains("list")) {
+      targetElement.classList.add("buttons");
+    } else if (targetParent.classList.contains("list")) {
+      targetParent.classList.add("buttons");
+    }
+  })
+
+  app.addEventListener("mouseout", (event) => {
+    const targetElement = event.target;
+    const targetParent = targetElement.parentNode;
+    if (targetElement.classList.contains("list")) {
+      targetElement.classList.remove("buttons");
+    } else if (targetParent.classList.contains("list")) {
+      targetParent.classList.remove("buttons");
     }
   })

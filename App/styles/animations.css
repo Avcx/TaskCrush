@@ -8,16 +8,8 @@
   transition: transform 0.5s;
 }
 
-.card button {
-  transition: color 0.75s;
-  transition: text-shadow 0.75s;
-}
-
-.edit:hover {
-  transition: color 0.5s;
-  transition: text-shadow 0.75s;
-}
-
+.card button,
+.edit:hover,
 .delete:hover {
   transition: color 0.75s;
   transition: text-shadow 0.75s;
@@ -29,4 +21,14 @@
 
 li {
   transition: transform 0.5s;
+}
+
+.list .edit,
+.list .delete {
+  transition: opacity 0.25s;
+}
+
+.buttons .edit,
+.buttons .delete {
+  transition: opacity 0.25s;
 }

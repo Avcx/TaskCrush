@@ -4,9 +4,8 @@
 
 */
 
-.root {
+html {
   box-sizing: border-box;
-  font-size: 1.5em;
 }
 
 *,
@@ -139,6 +138,7 @@ i {
 .add-box.card {
   display: block;
   max-width: 500px;
+  width: 100%;
   text-align: center;
   padding: 1rem;
   position: fixed;
@@ -146,7 +146,7 @@ i {
 }
 
 .add-box button {
-  margin-right: 5%;
+  margin-right: 0.4rem;
 }
 
 .card .card-header {
@@ -193,6 +193,7 @@ input[type="text"] {
 .card button {
   background: white;
   border: 0;
+  transition: opacity 0.5s;
   color: #48a;
   cursor: pointer;
   width: 2.5rem;
@@ -220,6 +221,15 @@ input[type="text"] {
 button:focus {
   outline: 0;
   background-color: #eee;
+}
+
+.edit, .delete {
+  opacity: 0;
+}
+
+.buttons .edit,
+.buttons .delete {
+  opacity: 1;
 }
 
 .edit:hover {
@@ -292,8 +302,8 @@ input[type="text"].edit-text {
   padding: 1em;
   background-color: #48a;
   background-color: rgba(68, 136, 170, .6);
-  height: 3em;
-  width: 3em;
+  height: 3rem;
+  width: 3rem;
   border-radius: 50%;
   border: none;
   color: white;
@@ -301,7 +311,6 @@ input[type="text"].edit-text {
 
 .float-btn:hover {
   cursor: pointer;
-  outline: 0;
   background-color: #49b;
   background-color: rgba(68, 186, 220, .6);
 }
@@ -328,6 +337,14 @@ input[type="text"].edit-text {
 
 */
 
+@media (min-width: 400px) {
+    .add-box.card {
+      width: 400px;
+      left: 50%;
+      margin-left: -200px;
+    }
+}
+
 @media (min-width: 500px) {
 
   /*
@@ -336,16 +353,6 @@ input[type="text"].edit-text {
 
   */
   .card {
-    width: 80%;
-  }
-
-  .add-box.card {
-    width: 400px;
-    left: 50%;
-    margin-left: -200px;
-  }
-
-  dialog {
     width: 80%;
   }
 
@@ -363,9 +370,6 @@ input[type="text"].edit-text {
 
   */
 
-  dialog {
-    width: 50%;
-  }
   input[type="text"] {
     width: 90%;
   }
@@ -375,12 +379,12 @@ input[type="text"].edit-text {
   }
 
   .add-box button {
-    margin-right: 0;
+    margin-right: 0.4rem;
   }
 
   .float-btn {
-    margin-right: 1em;
-    margin-bottom: 1em;
+    margin-right: 2em;
+    margin-bottom: 2em;
   }
   .app {
     flex-direction: row;
