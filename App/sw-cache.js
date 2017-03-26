@@ -1,18 +1,20 @@
 console.log("serviceWorker up and running!");
 
 let CACHE = [
-  "index.html",
+  "/",
   "/scripts/app.js",
   "/styles/main.css",
   "/data/manifest.json",
+  "/styles/animations.css",
+  "/scripts/register.js",
+  "sw-cache.js"
 ];
 
-let CACHE_VERSION = ["4"];
+let CACHE_VERSION = ["7"];
 
 let install = function(event) {
   event.waitUntil(
-    caches.open(CACHE_VERSION).then((cache) => {
-      cache.addAll(CACHE);
+    caches.open(CACHE_VERSION).then(function(cache) { cache.addAll(CACHE)}))
   caches.keys().then(function(keyList) {
     return Promise.all(keyList.map(function(key) {
       if (CACHE_VERSION.indexOf(key) === -1) {
@@ -20,8 +22,6 @@ let install = function(event) {
       }
     }));
   })
-    })
-  )
   console.log("installed.")
 }
 
@@ -30,7 +30,7 @@ this.addEventListener("fetch", function(event) {
     caches.match(event.request).then(function(r) {
       return r || fetch(event.request)
       }
-    )
+    ).catch(err => console.log(err))
   )
 }
 )
