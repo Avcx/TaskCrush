@@ -127,7 +127,7 @@ i {
   max-width: 700px;
 }
 
-.card.list {
+.list {
   height: 3.5rem;
 }
 
@@ -135,9 +135,9 @@ i {
   margin-top: 0.5rem;
 }
 
-.add-box.card {
+.add-box {
   display: block;
-  max-width: 500px;
+  max-width: 400px;
   width: 100%;
   text-align: center;
   padding: 1rem;
@@ -223,15 +223,6 @@ button:focus {
   background-color: #eee;
 }
 
-.edit, .delete {
-  opacity: 0;
-}
-
-.buttons .edit,
-.buttons .delete {
-  opacity: 1;
-}
-
 .edit:hover {
   opacity: 1;
   color: green;
@@ -277,7 +268,8 @@ input[type="text"].edit-text {
   top: 0.95rem;
 }
 
-.edit-mode .card-header {
+.edit-mode .card-header,
+.edit-mode .delete {
   visibility: hidden;
 }
 
@@ -338,8 +330,7 @@ input[type="text"].edit-text {
 */
 
 @media (min-width: 400px) {
-    .add-box.card {
-      width: 400px;
+    .add-box {
       left: 50%;
       margin-left: -200px;
     }
@@ -360,15 +351,31 @@ input[type="text"].edit-text {
     width: 90%;
   }
 
+  .float-btn {
+    margin-right: 2em;
+    margin-bottom: 2em;
+  }
+
 }
 
 @media (min-width: 780px) {
 
   /*
 
-      Phone Design
+    Desktop/Laptop
 
   */
+
+  .edit, .delete {
+    opacity: 0;
+  }
+
+  .buttons .edit,
+  .buttons .delete,
+  .edit-mode .edit
+  {
+    opacity: 1;
+  }
 
   input[type="text"] {
     width: 90%;
@@ -382,10 +389,6 @@ input[type="text"].edit-text {
     margin-right: 0.4rem;
   }
 
-  .float-btn {
-    margin-right: 2em;
-    margin-bottom: 2em;
-  }
   .app {
     flex-direction: row;
   }
