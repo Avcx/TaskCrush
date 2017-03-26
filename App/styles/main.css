@@ -102,12 +102,17 @@ i {
   position: fixed;
   z-index: 100;
   pointer-events: none;
-  transform: translateX(-110vw);
+  -webkit-transform: translateX(-110vw);
+          transform: translateX(-110vw);
 }
 
 .add-box.open {
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
-  transform: translateX(0);
+  transition: transform 0.5s, -webkit-transform 0.5s;
+          -webkit-transform: translateX(0);
+                  transform: translateX(0);
   pointer-events: all;
 }
 
@@ -193,6 +198,7 @@ input[type="text"] {
 .card button {
   background: white;
   border: 0;
+  -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
   color: #48a;
   cursor: pointer;
@@ -314,13 +320,19 @@ input[type="text"].edit-text {
 */
 
 .app {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+              -ms-flex-direction: column;
+                  flex-direction: column;
 }
 
 .list-container {
   width: 100%;
-  flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
 }
 
 /*
@@ -382,7 +394,10 @@ input[type="text"].edit-text {
   }
   .list-container {
     width: 100%;
-    flex-basis: 90%;
+
+        -ms-flex-preferred-size: 90%;
+
+            flex-basis: 90%;
   }
 
   .add-box button {
@@ -390,6 +405,13 @@ input[type="text"].edit-text {
   }
 
   .app {
-    flex-direction: row;
+
+            -webkit-box-orient: horizontal;
+
+            -webkit-box-direction: normal;
+
+                -ms-flex-direction: row;
+
+                    flex-direction: row;
   }
 }
