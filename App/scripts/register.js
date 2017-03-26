@@ -5,3 +5,9 @@ if ("serviceWorker" in navigator) {
     .catch(err => console.log(err))
   };
 }
+
+let request = window.indexedDB.open("TodoList", 1);
+
+request.onload = (event) => {
+  console.log(event);
+}
