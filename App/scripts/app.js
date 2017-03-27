@@ -17,6 +17,7 @@ function toggleButton() {
 
 
 
+
 const add = function(itemName = "", isComplete = false, exists = false) {
   //Create required elements
     itemName = itemName || inputText.value;
@@ -181,8 +182,9 @@ addButton.style.pointerEvents = "none";
 
 //This makes sures sure the button cannot
 //be clicked when the textbox is empty
-inputText.onchange = () => {
-  if (inputText.value === undefined) {
+
+inputText.oninput = () => {
+  if (inputText.value === "") {
     addButton.style.pointerEvents = "none";
   } else {
     addButton.style.pointerEvents = "all";

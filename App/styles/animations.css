@@ -4,11 +4,11 @@
     transition: opacity .5s;
 }
 
-.add-box
-{
-    transition: transform .5s;
-
-    will-change: transform;
+.add-box,
+.add-box.open 
+  {
+  will-change: transform;
+  transition: transform 0.5s;
 }
 
 .card button,
