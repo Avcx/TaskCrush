@@ -6,7 +6,6 @@ let CACHE = [
   "/styles/main.css",
   "/data/manifest.json",
   "/styles/animations.css",
-  "/scripts/register.js",
   "https://fonts.googleapis.com/icon?family=Material+Icons",
   "sw-cache.js"
 ];
