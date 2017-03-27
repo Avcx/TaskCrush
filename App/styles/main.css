@@ -43,14 +43,13 @@ h1
 
     margin: .25em 0;
     padding: 0 .5em;
-
-    pointer-events: none;
 }
 
-i
+i, h1
 {
     pointer-events: none;
 }
+
 
 /*
 
@@ -67,8 +66,8 @@ i
     width: 100%;
     height: 3.5em;
 
-    color: white;
-    background: #48a;
+
+    color: #fff;
 }
 
 .container
@@ -107,6 +106,33 @@ i
 .float-btn
 {
     box-shadow: 0 -1px 4px rgba(0, 0, 0, .3), 0 1px 4px rgba(0, 0, 0, .3);
+
+}
+
+/*
+
+    Main Colors
+
+*/
+
+.top-bar,
+.float-btn
+{
+    background: #48a;
+}
+
+input[type="text"],
+input[type="checkbox"],
+.card,
+.card button
+{
+  background-color: #fff;
+}
+
+input[type='text'].edit-text,
+button:focus
+{
+  background-color: #eee;
 }
 
 /*
@@ -119,6 +145,7 @@ i
 
 .add-box
 {
+    position: fixed;
     z-index: 100;
     -webkit-transform: translateX(-110vw);
             transform: translateX(-110vw);
@@ -145,7 +172,9 @@ i
 {
     position: relative;
 
+
     width: 98%;
+
     max-width: 700px;
     margin: 1rem auto;
     padding: .05em;
@@ -154,7 +183,6 @@ i
 
     border: 0;
     border-radius: .15em;
-    background-color: white;
 }
 
 .list
@@ -184,12 +212,6 @@ i
 .add-box button
 {
     margin-right: .4rem;
-}
-
-.add-box::backdrop {
-  display: none;
-  pointer-events: all;
-  visibility: collapse;
 }
 
 .card .card-header
@@ -223,8 +245,6 @@ input[type='checkbox']
     margin-top: .4rem;
 
     text-align: left;
-
-    background-color: white;
 }
 
 input[type='text']
@@ -234,13 +254,11 @@ input[type='text']
     width: 60%;
     max-width: 250px;
     height: 2.5rem;
-
-    background-color: white;
 }
 
 /*
 
-    Button design and Animation
+    Button design
 
 */
 
@@ -253,12 +271,9 @@ input[type='text']
     padding: .5rem .2rem;
 
     cursor: pointer;
-    -webkit-transition: opacity .5s;
-            transition: opacity .5s;
 
     color: #48a;
     border: 0;
-    background: white;
 }
 
 #close-dialog,
@@ -287,7 +302,6 @@ input[type='text']
 button:focus
 {
     outline: 0;
-    background-color: #eee;
 }
 
 .edit:hover
@@ -302,14 +316,6 @@ button:focus
     opacity: 1;
     color: red;
     text-shadow: 0 0 5px rgba(0, 0, 0, .9);
-}
-
-.heading
-{
-    padding: 1rem 1.5rem;
-
-    background: white;
-    box-shadow: 0 6px 4px rgba(0, 0, 0, .4), 0 2px 2px rgba(0, 0, 0, .12);
 }
 
 /*
@@ -368,6 +374,7 @@ input[type='text'].edit-text
     color: #808080;
 }
 
+
 .float-btn,
 .float-btn:focus
 {
@@ -375,17 +382,15 @@ input[type='text'].edit-text
     right: 0;
     bottom: 0;
 
-    width: 3rem;
-    height: 3rem;
+    width: 4em;
+    height: 4em;
     margin-right: 1em;
     margin-bottom: 1em;
-    padding: 1em;
+    padding: 2px;
 
-    opacity: 1;
     color: white;
     border: none;
     border-radius: 50%;
-    background-color: #48a;
     background-color: rgba(68, 136, 170, .6);
 }
 
@@ -418,6 +423,7 @@ input[type='text'].edit-text
 .list-container
 {
     width: 100%;
+
 
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
@@ -455,6 +461,7 @@ input[type='text'].edit-text
     {
         width: 90%;
     }
+
 
     .float-btn,
     .float-btn:focus
