@@ -3,7 +3,8 @@
   transition: opacity 0.5s;
 }
 
-.add-box {
+.add-box,
+.add-box.open {
   will-change: transform;
   transition: transform 0.5s;
 }
