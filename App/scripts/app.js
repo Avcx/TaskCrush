@@ -17,7 +17,7 @@ function toggleButton() {
 
 
 
-const add = function(itemName, isComplete = false, exists = false) {
+const add = function(itemName = undefined, isComplete = false, exists = false) {
   //Create required elements
     itemName = itemName || inputText.value;
   if (itemName === "") {
@@ -178,7 +178,10 @@ openDia.onclick = toggleDialog;
 closeButton.onclick = toggleDialog;
 Bg.onclick = toggleDialog;
 addButton.style.pointerEvents = "none";
-inputText.onchange = () => {
+
+//This makes sures sure the button cannot
+//be clicked when the textbox is empty
+inputText.oninput = () => {
   if (inputText.value === "") {
     addButton.style.pointerEvents = "none";
   } else {
@@ -191,8 +194,9 @@ addButton.addEventListener("click", () => {
   setTimeout(add, animationLength);
 });
 
-//Automatically sets event listeners based on the items list
-
+/*  Automatically sets event listeners based on the items list.
+  This means that when an item is moved, its checkbox is assigned
+  the appropriate function  */
 completedItems.addEventListener("click", (event) => {
   const targetElement = event.target;
     if (targetElement.classList.contains("list-select")) {
@@ -206,9 +210,11 @@ incompleteItems.addEventListener("click", (event) => {
     }
 })
 
+/*  Listens for clicks inside list items and maps out
+which button was pressed. This lowers the amount of
+needed event listeners.  */
 app.addEventListener("click", (event) => {
   const targetElement = event.target;
-  // console.log(targetElement);
     switch (targetElement.className) {
       case "edit":
         editItem.call(targetElement);
@@ -221,7 +227,7 @@ app.addEventListener("click", (event) => {
         break;
     }
   })
-
+//Listens for mouse movement entering list items
   app.addEventListener("mouseover", (event) => {
     const targetElement = event.target;
     const targetParent = targetElement.parentNode;
@@ -231,7 +237,7 @@ app.addEventListener("click", (event) => {
       targetParent.classList.add("buttons");
     }
   })
-
+//Listens for mouse movement leaving list items
   app.addEventListener("mouseout", (event) => {
     const targetElement = event.target;
     const targetParent = targetElement.parentNode;
