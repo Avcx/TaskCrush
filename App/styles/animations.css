@@ -1,35 +1,42 @@
-#backdrop {
-  will-change: opacity;
-  transition: opacity 0.5s;
+#backdrop,
+.card button
+{
+    transition: opacity .5s;
 }
 
 .add-box,
-.add-box.open {
+.add-box.open 
+  {
   will-change: transform;
   transition: transform 0.5s;
 }
 
 .card button,
 .edit:hover,
-.delete:hover {
-  transition: color 0.75s;
-  transition: text-shadow 0.75s;
+.delete:hover
+{
+    transition: color .75s;
+    transition: text-shadow .75s;
 }
 
-.float-btn {
-  will-change: transform;
+.float-btn
+{
+    will-change: transform;
 }
 
-li {
-  transition: transform 0.5s;
+li
+{
+    transition: transform .5s;
 }
 
 .list .edit,
-.list .delete {
-  transition: opacity 0.25s;
+.list .delete
+{
+    transition: opacity .25s;
 }
 
 .buttons .edit,
-.buttons .delete {
-  transition: opacity 0.25s;
+.buttons .delete
+{
+    transition: opacity .25s;
 }
