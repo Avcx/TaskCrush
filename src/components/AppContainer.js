@@ -1,31 +1,34 @@
-import AddBox from "./AddBox";
 import { useState } from "react";
 import ListContainer from "./ListContainer";
-import BackDrop from "./BackDrop";
-import ListItem from "./ListItem";
+import { Col, Row } from "reactstrap";
 
 const AppContainer = () => {
   const [Open, setOpen] = useState(false);
 
   const toggleAddBox = () => {
-    if (!Open) {
-      setOpen(true);
-    } else {
-      setOpen(false);
-    }
+    setOpen(!Open);
   };
   return (
-    <div className="container">
-      <AddBox open={Open} toggleAddBox={toggleAddBox} />
-      <BackDrop visible={Open} />
-      <div className="app">
-        <ListContainer type="incomplete" />
-        <ListContainer type="complete" />
+    <>
+      <div className='container-md'>
+        <Row>
+          <Col>
+            <ListContainer type='incomplete' />
+          </Col>
+          <Col>
+            <ListContainer type='complete' />
+          </Col>
+        </Row>
+        <button
+          type='button'
+          className='btn btn-secondary'
+          onClick={toggleAddBox}
+        >
+          <i className='material-icons'>add</i>
+        </button>
       </div>
-      <button className="float-btn" onClick={toggleAddBox}>
-        <i className="material-icons">add</i>
-      </button>
-    </div>
+      <AddBox open={Open} toggleAddBox={toggleAddBox} />
+    </>
   );
 };
 
